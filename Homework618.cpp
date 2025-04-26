@@ -24,13 +24,13 @@ std::vector<int> append(std::vector<int> a,std::vector<int> b){
 }
 
 int main(){
-    std::vector<int> ab={1,3,4,5,6,7};
-    std::vector<int> ba={1,4,44,4,4,5,56,6};
+    std::vector<int> ab={1, 4, 9, 16};
+    std::vector<int> ba={9, 7, 4, 9, 11};
 
     std::vector<int> abba = append(ab,ba);
 
     for(int x: abba){
-        std::cout<<x<<std::endl;
+        std::cout<<x<<" ";
     }
 
     return 0;
