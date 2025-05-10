@@ -67,7 +67,7 @@ void Board::display() const{
 int Board::add(int player) {
     int bindex;//bin index
     while(true){
-        std::cout<<"Enter a bin index in [0,"<<numBins<<") that is not full: ";
+        std::cout<<"Enter an index in [0,"<<numBins<<"): ";
         std::cin>>bindex;
 
         if(bindex>=numBins || bindex<0) //if user input isout of range, raise error and reprompt for input
@@ -88,18 +88,14 @@ void Board::play(){
     //will store which player has won
     int winCondition=-1;
     //this will automatically alternate between which player is being played within the while loop
-    int playerChoose=0;
-    
-    int fullbins=0; //checks # of full bins
-    while(winCondition==-1 && fullbins !=numBins){
-        fullbins=0;
-        for(int i =0;i<numBins;i++){
-            if(grid[i].size()==capacity)
-                fullbins++;
-        }
-        winCondition=win(add(playerChoose)); //adds the new index and also stores the index where it was inserted into the var winCondition then checking for a win
+    int player=0;
+    //checks # of moves
+    int totalmoves=0;
+    while(winCondition==-1 && totalmoves!=(numBins*capacity)){
+        winCondition=win(add(player)); //adds the new index and also stores the index where it was inserted into the var winCondition then checking for a win
+        totalmoves++;
         display();
-        playerChoose=(playerChoose+1)%2; //alternates between plyr 1 & 0
+        player=(player+1)%2; //alternates between plyr 1 & 0
     }
     
     if(winCondition==0)
